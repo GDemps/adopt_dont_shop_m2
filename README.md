@@ -1,0 +1,1 @@
+# adopt_dont_shop_m2
