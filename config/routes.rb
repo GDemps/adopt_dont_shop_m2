@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   post "/shelters", to: "shelters#create"
   get "/shelters/:id/edit", to: "shelters#edit"
   patch "/shelters/:id", to: "shelters#update"
+
+  get "/pets", to: "pets#index"
+  get "/pets/:id", to: "pets#show"
+
+  get "/shelters/:id/pets", to: "shelter_pets#index"
 end
