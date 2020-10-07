@@ -4,3 +4,4 @@
 <%= @shelter.state %>
 <%= @shelter.zip %><br>
 <a href="/shelters/<%= @shelter.id %>/edit">Edit Shelter</a>
+<%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
