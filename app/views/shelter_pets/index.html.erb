@@ -1,8 +1,9 @@
 <h1><%= @shelter.name %>'s Pets</h1>
+<%= link_to "Add Pet", "/shelters/#{@shelter.id}/pets/new" %>
 <% @shelter.pets.each do |pet| %>
   <br>
   <%= pet.image %><br>
-  <%= pet.name %><br>
-  <%= pet.approximate_age %><br>
-  <%= pet.sex %>
+  Name:<%= pet.name %><br>
+  Approx Age:<%= pet.approximate_age %><br>
+  Sex:<%= pet.sex %><br>
 <% end %>
