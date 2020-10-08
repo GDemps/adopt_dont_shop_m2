@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'From shelter pets index page create new pet' do
+RSpec.describe 'Update pet from pet show page' do
   before :each do
     @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
     @shelter2 = Shelter.create!(name: "Silly Shelter", address: "123 Silly Ave", city: "Longmont", state: "CO", zip: 80012)
@@ -10,27 +10,29 @@ RSpec.describe 'From shelter pets index page create new pet' do
     @pet3 = @shelter1.pets.create!(image:"", name: "Zeus", description: "dog", approximate_age: 4, sex: "male")
   end
 
-  it "can create a new pet from Shelter Pet index page" do
+  it "can update a shelter from the shelter show page" do
+    visit "/pets/#{@pet1.id}"
 
-    visit "/shelters/#{@shelter1.id}/pets"
+    click_link "Update Pet"
 
-    click_link "Add Pet"
+    expect(current_path).to eq("/pets/#{@pet1.id}/edit")
 
-    expect(current_path).to eq("/shelters/#{@shelter1.id}/pets/new")
+    fill_in "name", with: "Thora"
+    fill_in "approximate_age", with: 5
+    fill_in "sex", with: "female"
+    # fill_in "state", with: 'PA'
+    # fill_in "zip", with: 12345
 
-    fill_in "image", with: 'image'
-    fill_in "name", with: 'Apollo'
-    fill_in "description", with: 'Dog'
-    fill_in "approximate_age", with: 3
-    fill_in "sex", with: "male"
+    click_button("Update")
 
-    click_on 'Create Pet'
+    expect(current_path).to eq("/pets/#{@pet1.id}")
+    save_and_open_page
 
-    expect(current_path).to eq("/shelters/#{@shelter1.id}/pets")
 
-    expect(page).to have_content("image")
-    expect(page).to have_content("Apollo")
-    expect(page).to have_content(3)
-    expect(page).to have_content("male")
+    expect(page).to have_content("Name: Thora")
+    expect(page).to have_content("Approx Age: 5")
+    expect(page).to_not have_content("Approx Age: 2")
+    expect(page).to have_content("Sex: female")
+    expect(page).to_not have_content("Sex: male")
   end
 end

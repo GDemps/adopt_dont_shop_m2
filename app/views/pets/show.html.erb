@@ -1,6 +1,7 @@
 <%= @pet.image %>
-<h2>Name: <%= "#{@pet.name}" %></h2><br>
+<h2>Name: <%= "#{@pet.name}" %></h2>
 Description: <%= @pet.description %><br>
 Approx Age: <%= @pet.approximate_age %><br>
 Sex: <%= @pet.sex %><br>
-Adoption Status: <%= @pet.adoptable? %>
+Adoption Status: <%= @pet.adoptable? %><br>
+<a href="/pets/<%= @pet.id %>/edit">Update Pet</a>
