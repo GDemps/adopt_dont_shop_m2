@@ -38,7 +38,24 @@ RSpec.describe 'Pets index page' do
     end
 
     expect(current_path).to eq("/pets")
+    expect(page).to_not have_content("Thor")
+  end
 
+  it "can edit a pet from pets index page" do
+    visit '/pets'
+
+    within "#pet-#{@pet1.id}" do
+      expect(page).to have_content("Thor")
+      click_link "Update Pet"
+    end
+
+    fill_in "name", with: "Calvin"
+
+    click_button "Update Pet"
+
+    expect(current_path).to eq("/pets/#{@pet1.id}")
+
+    expect(page).to have_content("Calvin")
     expect(page).to_not have_content("Thor")
   end
 end

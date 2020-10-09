@@ -12,7 +12,7 @@ RSpec.describe 'Shelters index page' do
     expect(page).to have_content(@shelter2.name)
   end
 
-  it "can delete a shelter from index page" do
+  it "can edit a shelter from index page" do
     visit '/shelters'
 
     within "#shelter-#{@shelter1.id}" do
@@ -23,7 +23,7 @@ RSpec.describe 'Shelters index page' do
     fill_in "name", with: "Shoddy Shelter"
     click_button "Update Shelter"
     expect(current_path).to eq("/shelters/#{@shelter1.id}")
-    
+
     expect(page).to have_content("Shoddy Shelter")
     expect(page).to_not have_content("Shady Shelter")
   end
