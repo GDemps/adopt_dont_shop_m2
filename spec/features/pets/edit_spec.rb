@@ -26,8 +26,6 @@ RSpec.describe 'Update pet from pet show page' do
     click_button("Update")
 
     expect(current_path).to eq("/pets/#{@pet1.id}")
-    save_and_open_page
-
 
     expect(page).to have_content("Name: Thora")
     expect(page).to have_content("Approx Age: 5")
