@@ -5,3 +5,4 @@ Approx Age: <%= @pet.approximate_age %><br>
 Sex: <%= @pet.sex %><br>
 Adoption Status: <%= @pet.adoptable? %><br>
 <a href="/pets/<%= @pet.id %>/edit">Update Pet</a>
+<%= button_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>
