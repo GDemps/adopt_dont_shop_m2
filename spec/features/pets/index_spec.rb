@@ -28,4 +28,17 @@ RSpec.describe 'Pets index page' do
 
     expect(page).to_not have_content(@shelter3.name)
   end
+
+  it "can delete a pet from pet index page" do
+    visit "/pets"
+
+    within "#pet-#{@pet1.id}" do
+      expect(page).to have_content("Thor")
+      click_link "Delete Pet"
+    end
+
+    expect(current_path).to eq("/pets")
+
+    expect(page).to_not have_content("Thor")
+  end
 end

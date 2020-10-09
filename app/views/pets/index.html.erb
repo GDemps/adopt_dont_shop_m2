@@ -2,10 +2,13 @@
 
 <% @pets.each do |pet| %>
   <% if pet.adoptable == true %>
-    <%= pet.image %><br>
-    name: <%= pet.name %><br>
-    approx age: <%= pet.approximate_age %><br>
-    sex: <%= pet.sex%><br>
-    shelter: <%= pet.shelter.name %><br>
+  <section id="pet-<%=pet.id%>">
+      <%= pet.image %><br>
+      name: <%= pet.name %><br>
+      approx age: <%= pet.approximate_age %><br>
+      sex: <%= pet.sex%><br>
+      shelter: <%= pet.shelter.name %><br>
+      <%= link_to "Delete Pet", "/pets/#{pet.id}", method: :delete %><br>
+    </section>
   <% end %>
 <% end %>
