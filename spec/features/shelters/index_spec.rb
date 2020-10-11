@@ -40,4 +40,26 @@ RSpec.describe 'Shelters index page' do
 
     expect(page).to_not have_content("Shady Shelter")
   end
+
+  it "Update Shelter link next to every shelter" do
+    visit "/shelters"
+
+    expect(page).to have_content("Shady Shelter")
+
+    within "#shelter-#{@shelter1.id}" do
+      expect(page).to have_link("Edit Shelter")
+
+      click_link "Edit Shelter"
+    end
+
+      fill_in "name", with: 'Poo and Paws'
+
+      click_button("Update Shelter")
+
+      expect(current_path).to eq("/shelters/#{@shelter1.id}")
+
+      expect(page).to have_content("Poo and Paws")
+      save_and_open_page
+      expect(page).to_not have_content("Shady Shelter")
+  end
 end
