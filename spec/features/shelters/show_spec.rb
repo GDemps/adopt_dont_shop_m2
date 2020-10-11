@@ -15,4 +15,14 @@ RSpec.describe 'Shelter show page' do
     expect(page).to have_content(@shelter1.state)
     expect(page).to have_content(@shelter1.zip)
   end
+
+  it "has a link to that shelter's pets" do
+    visit "/shelters/#{@shelter1.id}"
+
+    expect(page).to have_link("#{@shelter1.name}'s Pets")
+
+    click_link "#{@shelter1.name}'s Pets"
+
+    expect(current_path).to eq("/shelters/#{@shelter1.id}/pets")
+  end
 end

@@ -13,3 +13,71 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+
+
+body {
+  background-color: #fbf5cd;
+   color: #065e09;
+   font-family: Arial;
+   font-size: 35px;
+   line-height: 1.5em;
+   margin: 0em;
+   text-align: center;
+
+}
+
+header {
+  padding: 10px;
+  background-color: lightblue;
+  color: white;
+  font-family: Arial;
+  line-height: 2em;
+  text-align: center;
+}
+
+.header-link {
+  background-color: #fbf5cd;
+  font-size: 20px;
+  color: orange;
+
+}
+
+.nav-bar {
+  font-family: Arial;
+  background-color: lightblue;
+  color: black;
+  text-align: left;
+  font-size: 20px;
+  padding: 0px;
+
+
+
+
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 10px;
+}
+
+.container {
+  width: 200px;
+  height: 120px;
+}
+
+.img-container {
+  width: 50%;
+  height: auto;
+}

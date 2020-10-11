@@ -7,6 +7,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+  <header>
+    <div class="nav-bar">
+      <ul>
+        <p><%= link_to "Back to Home", "/" %>
+          <%= link_to "Go to Shelters", "/shelters" %>
+          <%= link_to 'Go to Pets', "/pets" %>
   </head>
 
   <body>
