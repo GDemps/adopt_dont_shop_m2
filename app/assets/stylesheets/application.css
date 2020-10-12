@@ -40,8 +40,7 @@ header {
 .header-link {
   background-color: #fbf5cd;
   font-size: 20px;
-  color: orange;
-
+  color: black;
 }
 
 .nav-bar {
@@ -78,6 +77,6 @@ header {
 }
 
 .img-container {
-  width: 50%;
+  width: 25%;
   height: auto;
 }

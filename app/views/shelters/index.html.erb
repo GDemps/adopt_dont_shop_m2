@@ -1,8 +1,8 @@
-<h1>Shelters Index</h1>
+<h1>Shelters</h1>
 <%= link_to 'New Shelter', '/shelters/new' %>
 <% @shelters.each do |shelter| %>
   <section id="shelter-<%=shelter.id%>">
-    <%= link_to "#{shelter.name}", "shelters/#{shelter.id}" %><br>
+    <h2><%= link_to "#{shelter.name}", "shelters/#{shelter.id}" %></h2>
     <a href="/shelters/<%= shelter.id %>/edit">Edit Shelter</a>
     <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete %>
   </section>

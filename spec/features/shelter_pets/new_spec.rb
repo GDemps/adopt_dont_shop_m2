@@ -18,7 +18,7 @@ RSpec.describe 'From shelter pets index page create new pet' do
 
     expect(current_path).to eq("/shelters/#{@shelter1.id}/pets/new")
 
-    fill_in "image", with: 'image'
+    fill_in "image", with: ""
     fill_in "name", with: 'Apollo'
     fill_in "description", with: 'Dog'
     fill_in "approximate_age", with: 3
@@ -28,7 +28,7 @@ RSpec.describe 'From shelter pets index page create new pet' do
 
     expect(current_path).to eq("/shelters/#{@shelter1.id}/pets")
 
-    expect(page).to have_content("image")
+    expect(page).to have_content("")
     expect(page).to have_content("Apollo")
     expect(page).to have_content(3)
     expect(page).to have_content("male")
