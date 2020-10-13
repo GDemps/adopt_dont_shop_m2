@@ -6,3 +6,12 @@
 <%= link_to "#{@shelter.name}'s Pets", "/shelters/#{@shelter.id}/pets" %>
 <a href="/shelters/<%= @shelter.id %>/edit">Edit Shelter</a>
 <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+
+<h2>REVIEWS</h2>
+<% @reviews.each do |review| %>
+<%= review.title %>
+<%= review.rating %>
+<%= review.content %>
+<%= review.image %>
+<%= review.name %>
+<% end %>
