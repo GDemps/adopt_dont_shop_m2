@@ -25,4 +25,10 @@ RSpec.describe 'Shelter show page' do
 
     expect(current_path).to eq("/shelters/#{@shelter1.id}/pets")
   end
+
+  it "I see a list of reviews for that shelter" do
+
+    visit "/shelters/#{@shelter1.id}"
+
+  end
 end
