@@ -13,9 +13,6 @@ RSpec.describe "As a visitor" do
 
       click_on "Create User"
 
-      require "pry"
-      binding.pry
-
       expect(current_path).to eq("/users/#{User.last.id}")
       expect(page).to have_content("Phil")
       expect(page).to have_content("123 Phil Dr.")
