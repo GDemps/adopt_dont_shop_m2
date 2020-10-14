@@ -38,4 +38,14 @@ RSpec.describe 'Shelter show page' do
     expect(page).to have_content(@review_1.image)
     expect(page).to have_content(@user_1.name)
   end
+
+  it "I see a link to add a new review for this shelter." do
+
+    visit "/shelters/#{@shelter1.id}"
+    expect(page).to have_link("New Review")
+
+    click_on("New Review")
+    expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews/new")
+
+  end
 end
