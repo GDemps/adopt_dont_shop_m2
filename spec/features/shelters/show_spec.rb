@@ -5,7 +5,7 @@ RSpec.describe 'Shelter show page' do
     @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
     @shelter2 = Shelter.create!(name: "Silly Shelter", address: "123 Silly Ave", city: "Denver", state: "CO", zip: 80012)
     @user_1 = User.create!(name: "Tom", street_address: "123 Tom ave", city: "Tomville", state: "CO", zip: 80011)
-    @review_1 = @user_1.reviews.create!(title: "Great Ptes", rating: 4, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter1.id)
+    @review_1 = @user_1.reviews.create!(title: "Great Pets", rating: 4, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter1.id)
   end
 
   it "displays shelter with that id and all its attributes" do
@@ -47,5 +47,35 @@ RSpec.describe 'Shelter show page' do
     click_on("New Review")
     expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews/new")
 
+  end
+
+  it "Can edit review with a link next to each review" do
+    visit "/shelters/#{@shelter1.id}"
+    
+    within "#review-#{@review_1.id}" do
+      expect(page).to have_content("Great Pets")
+      click_link "Edit Review"
+    end
+
+    expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
+
+    fill_in :title, with: "Not so great pets"
+    fill_in :rating, with: 2
+    fill_in :content, with: "Horrible shelter and horrible pets"
+    fill_in :image, with: ""
+    fill_in :name, with: "Tom"
+
+    click_button("Update Review")
+
+    within "#review-#{@review_1.id}" do
+      expect(page).to have_content(2)
+      expect(page).to have_content("Horrible shelter and horrible pets")
+      expect(page).to have_content("")
+      expect(page).to have_content("Tom")
+    end
+
+    click_on "Update Review"
+
+    expect(current_path).to eq("/shelters/#{@shelter1.id}")
   end
 end
