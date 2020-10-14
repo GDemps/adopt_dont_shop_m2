@@ -295,6 +295,18 @@
           null
         ]
       },
+      "/Users/jamesbelta/turing/2module/repeat_mod_2/projects/adopt_dont_shop_m2/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/jamesbelta/turing/2module/repeat_mod_2/projects/adopt_dont_shop_m2/app/controllers/reviews_controller.rb": {
         "lines": [
           1,
@@ -307,12 +319,16 @@
           1,
           1,
           1,
-          0,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           null,
           1,
           1,
-          2,
+          1,
           null,
           null,
           null,
@@ -335,22 +351,56 @@
           null,
           null,
           null,
+          null,
+          null,
           null
         ]
       },
-      "/Users/jamesbelta/turing/2module/repeat_mod_2/projects/adopt_dont_shop_m2/app/models/user.rb": {
+      "/Users/jamesbelta/turing/2module/repeat_mod_2/projects/adopt_dont_shop_m2/app/controllers/shelters_controller.rb": {
         "lines": [
           1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
           1,
           1,
           null,
           null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          1,
+          0,
           null,
           null,
           null
         ]
       }
     },
-    "timestamp": 1602631607
+    "timestamp": 1602635295
   }
 }
