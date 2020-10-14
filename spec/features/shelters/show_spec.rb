@@ -51,7 +51,7 @@ RSpec.describe 'Shelter show page' do
 
   it "Can edit review with a link next to each review" do
     visit "/shelters/#{@shelter1.id}"
-    
+
     within "#review-#{@review_1.id}" do
       expect(page).to have_content("Great Pets")
       click_link "Edit Review"
@@ -73,8 +73,6 @@ RSpec.describe 'Shelter show page' do
       expect(page).to have_content("")
       expect(page).to have_content("Tom")
     end
-
-    click_on "Update Review"
 
     expect(current_path).to eq("/shelters/#{@shelter1.id}")
   end
