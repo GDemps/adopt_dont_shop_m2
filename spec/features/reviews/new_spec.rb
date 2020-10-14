@@ -25,7 +25,6 @@ describe "I am taken to a new review path" do
 
     click_on 'Create Review'
     expect(current_path).to eq("/shelters/#{@shelter1.id}")
-save_and_open_page
     expect(page).to have_content("Awful Place")
     expect(page).to have_content(1)
     expect(page).to have_content("A dog pooped on me")
