@@ -9,11 +9,14 @@
 
 <h2>REVIEWS</h2>
 <% @shelter.reviews.each do |review| %>
+<section id="review-<%=review.id%>">
   <%= review.title %><br>
   Rating: <%= review.rating %><br>
   Comment:<%= review.content %><br>
   <%= review.image %><br>
   User: <%= review.name %><br>
+  <%= link_to "Edit Review", "/reviews/#{review.id}/edit" %>
+</section>
 <% end %>
 
 <%= link_to "New Review", "/shelters/#{@shelter.id}/reviews/new"%>
