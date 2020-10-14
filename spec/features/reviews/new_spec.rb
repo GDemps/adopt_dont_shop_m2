@@ -4,8 +4,10 @@ describe "I am taken to a new review path" do
   before :each do
     @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
 
+    @user_1 = User.create!(name: "Tom", street_address: "123 Tom ave", city: "Tomville", state: "CO", zip: 80011)
+
     visit "/shelters/#{@shelter1.id}/reviews/new"
-    
+
   end
   it "On this new page, I see a form where I must enter params" do
 
@@ -22,8 +24,8 @@ describe "I am taken to a new review path" do
     fill_in :name, with: name
 
     click_on 'Create Review'
-    expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews")
-
+    expect(current_path).to eq("/shelters/#{@shelter1.id}")
+save_and_open_page
     expect(page).to have_content("Awful Place")
     expect(page).to have_content(1)
     expect(page).to have_content("A dog pooped on me")
