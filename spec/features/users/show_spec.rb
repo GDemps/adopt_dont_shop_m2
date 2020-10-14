@@ -6,7 +6,7 @@ describe "As a visitor" do
       @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
       @shelter2 = Shelter.create!(name: "Silly Shelter", address: "123 Silly Ave", city: "Denver", state: "CO", zip: 80012)
       @user_1 = User.create!(name: "Tom", street_address: "123 Tom ave", city: "Tomville", state: "CO", zip: 80011)
-      @review_1 = @user_1.reviews.create!(title: "Great Ptes", rating: 4, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter1.id)
+      @review_1 = @user_1.reviews.create!(title: "Great Pets", rating: 4, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter1.id)
       @review_2 = @user_1.reviews.create!(title: "Uncool cats", rating: 5, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter2.id)
     end
     it "Then I see all that User's information" do
@@ -26,7 +26,6 @@ describe "As a visitor" do
       expect(page).to have_content(@review_1.rating)
       expect(page).to have_content(@review_2.title)
       expect(page).to have_content(@review_2.rating)
-      save_and_open_page
     end
   end
 end
