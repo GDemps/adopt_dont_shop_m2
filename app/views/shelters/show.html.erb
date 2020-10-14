@@ -8,7 +8,7 @@
 <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
 
 <h2>REVIEWS</h2>
-<% @reviews.each do |review| %>
+<% @shelter.reviews.each do |review| %>
   <%= review.title %><br>
   Rating: <%= review.rating %><br>
   Comment:<%= review.content %><br>
