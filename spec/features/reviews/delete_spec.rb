@@ -9,12 +9,12 @@ describe "When I click on the Delete Review link from a shelter's show page" do
     end
     it "deletes a review from A shelters show page" do
       visit "/shelters/#{@shelter1.id}"
-      save_and_open_page
+
       within "#review-#{@review_1.id}" do
         expect(page).to have_link("Delete Review")
         click_link("Delete Review")
       end
-      save_and_open_page
+
       expect(current_path).to eq("/shelters/#{@shelter1.id}")
       expect(page).to_not have_content(@review_1)
     end
