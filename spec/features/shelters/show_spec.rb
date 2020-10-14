@@ -76,4 +76,12 @@ RSpec.describe 'Shelter show page' do
 
     expect(current_path).to eq("/shelters/#{@shelter1.id}")
   end
+
+  it "Has a delete link for shelters reviews" do
+    visit "/shelters/#{@shelter1.id}"
+
+    within "#review-#{@review_1.id}" do
+      expect(page).to have_link("Delete Review")
+    end
+  end
 end
