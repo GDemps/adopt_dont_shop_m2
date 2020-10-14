@@ -7,10 +7,14 @@ class ReviewsController < ApplicationController
   def create
     @shelter = Shelter.find(params[:shelter_id])
     @user = User.first
-    review = @shelter.reviews.new(review_params)
-    review[:user_id] = @user.id
-    review.save
-    redirect_to "/shelters/#{@shelter.id}"
+      review = @shelter.reviews.new(review_params)
+      review[:user_id] = @user.id
+    if review.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash.now[:notice] = review.errors.full_messages.uniq
+      render :new
+    end
   end
 
   def edit
