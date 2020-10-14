@@ -2,4 +2,11 @@
 <%= @user.street_address %>
 <%= @user.city %>
 <%= @user.state %>
-<%= @user.zip %>
+<%= @user.zip %><br>
+
+<% @user.reviews.each do |review| %>
+  <br>
+  Review: <%= review.title %>
+  <%= review.rating %><br>
+  <%= review.content %><br>
+<% end %>
