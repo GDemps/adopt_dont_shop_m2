@@ -6,8 +6,13 @@ class Review < ApplicationRecord
                         :content,
                         :rating
 
-  def name_match?
+  def name_exists?
     users = User.pluck(:name)
     users.any?(name)
   end
+
+  def name_match?
+    name == user.name
+  end
+
 end
