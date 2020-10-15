@@ -4,6 +4,10 @@ class ReviewsController < ApplicationController
     @shelter = Shelter.find(params[:shelter_id])
   end
 
+  def show
+    @review = Review.find(params[:id])
+  end
+
   def create
     @shelter = Shelter.find(params[:shelter_id])
     @user = User.first
@@ -25,9 +29,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    review = Review.find(params[:id])
-    review.update(review_params)
-    redirect_to "/shelters/#{review.shelter_id}"
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to "/shelters/#{@review.shelter_id}"
+    else
+      flash.now[:notice] = @review.errors.full_messages.uniq.to_sentence
+      render :edit
+    end
   end
 
   def destroy
