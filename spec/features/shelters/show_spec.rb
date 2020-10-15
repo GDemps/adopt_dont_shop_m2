@@ -84,4 +84,25 @@ RSpec.describe 'Shelter show page' do
       expect(page).to have_link("Delete Review")
     end
   end
+  it "Will not create edit a review without required fields of title, rating, and/or content" do
+    visit "/reviews/#{@review_1.id}/edit"
+
+    title = "Horrific Shelter"
+    rating = 1
+    content = ""
+    image = ""
+    name = "Tom"
+
+    fill_in :title, with: title
+    fill_in :rating, with: rating
+    fill_in :content, with: ""
+    fill_in :image, with: image
+    fill_in :name, with: name
+
+    save_and_open_page
+    click_on 'Update Review'
+    expect(page).to_not have_content("Horrific Shelter")
+    expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews")
+    expect(page).to have_content("Content can't be blank")
+  end
 end
