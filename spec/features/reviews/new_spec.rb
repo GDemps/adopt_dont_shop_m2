@@ -48,7 +48,7 @@ describe "I am taken to a new review path" do
 
     expect(page).to_not have_content("Horrific Shelter")
     expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews")
-    save_and_open_page
+
     expect(page).to have_content("Content can't be blank")
   end
 end
