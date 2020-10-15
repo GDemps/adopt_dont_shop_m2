@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to "/shelters/#{@shelter.id}"
     else
-      flash.now[:notice] = review.errors.full_messages.uniq
+      flash.now[:notice] = review.errors.full_messages.uniq.to_sentence
       render :new
     end
   end
