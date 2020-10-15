@@ -45,7 +45,7 @@ describe "Edit" do
     fill_in :name, with: name
 
     click_on 'Update Review'
-    
+
     expect(page).to_not have_content("Horrific Shelter")
     expect(current_path).to eq("/reviews/#{@review_1.id}")
     expect(page).to have_content("Title can't be blank, Content can't be blank, and Rating can't be blank")
