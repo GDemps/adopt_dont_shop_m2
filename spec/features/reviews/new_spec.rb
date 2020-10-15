@@ -67,7 +67,7 @@ describe "I am taken to a new review path" do
     fill_in :name, with: name
 
     click_on 'Create Review'
-save_and_open_page
+    
     expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews")
     expect(page).to have_content("No user with the name #{name}")
   end

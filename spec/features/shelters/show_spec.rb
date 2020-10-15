@@ -56,25 +56,6 @@ RSpec.describe 'Shelter show page' do
       expect(page).to have_content("Great Pets")
       click_link "Edit Review"
     end
-
-    expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
-
-    fill_in :title, with: "Not so great pets"
-    fill_in :rating, with: 2
-    fill_in :content, with: "Horrible shelter and horrible pets"
-    fill_in :image, with: ""
-    fill_in :name, with: "Tom"
-
-    click_button("Update Review")
-
-    within "#review-#{@review_1.id}" do
-      expect(page).to have_content(2)
-      expect(page).to have_content("Horrible shelter and horrible pets")
-      expect(page).to have_content("")
-      expect(page).to have_content("Tom")
-    end
-
-    expect(current_path).to eq("/shelters/#{@shelter1.id}")
   end
 
   it "Has a delete link for shelters reviews" do
