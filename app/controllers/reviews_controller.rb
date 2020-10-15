@@ -9,10 +9,13 @@ class ReviewsController < ApplicationController
     @user = User.first
       review = @shelter.reviews.new(review_params)
       review[:user_id] = @user.id
-    if review.save
+    if review.save && review.name_match?
       redirect_to "/shelters/#{@shelter.id}"
-    else
+    elsif review.save == false
       flash.now[:notice] = review.errors.full_messages.uniq.to_sentence
+      render :new
+    else
+      flash.now[:notice] = "No user with the name #{review.name}"
       render :new
     end
   end
