@@ -4,6 +4,7 @@ describe "Edit" do
   before :each do
     @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
     @user_1 = User.create!(name: "Tom", street_address: "123 Tom ave", city: "Tomville", state: "CO", zip: 80011)
+    @user_2 = User.create!(name: "Jim", street_address: "321 Jim St", city: "Jimville", state: "CO", zip: 80012)
     @review_1 = @user_1.reviews.create!(title: "Great Pets", rating: 4, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter1.id)
   end
   it "can update a review" do
@@ -45,9 +46,10 @@ describe "Edit" do
     fill_in :name, with: name
 
     click_on 'Update Review'
-    
+
     expect(page).to_not have_content("Horrific Shelter")
     expect(current_path).to eq("/reviews/#{@review_1.id}")
     expect(page).to have_content("Title can't be blank, Content can't be blank, and Rating can't be blank")
+    save_and_open_page
   end
 end
