@@ -5,4 +5,9 @@ class Review < ApplicationRecord
   validates_presence_of :title,
                         :content,
                         :rating
+
+  def name_match?
+    users = User.pluck(:name)
+    users.any?(name)
+  end
 end
