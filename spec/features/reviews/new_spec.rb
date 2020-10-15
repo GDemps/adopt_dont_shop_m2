@@ -51,4 +51,24 @@ describe "I am taken to a new review path" do
 
     expect(page).to have_content("Content can't be blank")
   end
+  it "Will not create review without a user" do
+    visit "/shelters/#{@shelter1.id}/reviews/new"
+
+    title = "Horrific Shelter"
+    rating = 1
+    content = "Ugliest dogs ever"
+    image = ""
+    name = "Kevin"
+
+    fill_in :title, with: title
+    fill_in :rating, with: rating
+    fill_in :content, with: content
+    fill_in :image, with: image
+    fill_in :name, with: name
+
+    click_on 'Create Review'
+save_and_open_page
+    expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews")
+    expect(page).to have_content("No user with the name #{name}")
+  end
 end
