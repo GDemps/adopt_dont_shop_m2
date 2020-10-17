@@ -50,6 +50,5 @@ describe "Edit" do
     expect(page).to_not have_content("Horrific Shelter")
     expect(current_path).to eq("/reviews/#{@review_1.id}")
     expect(page).to have_content("Title can't be blank, Content can't be blank, and Rating can't be blank")
-    save_and_open_page
   end
 end
