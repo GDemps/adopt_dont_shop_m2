@@ -4,10 +4,25 @@
 <%= @user.state %>
 <%= @user.zip %><br>
 
+<% if @user.reviews? %>
 <% @user.reviews.each do |review| %>
   <br>
-  Review: <%= review.title %>
-  <%= review.rating %><br>
-  <%= review.content %><br>
+  Review: <%= review.title %><br>
+          rating: <%= review.rating %><br>
+          <%= review.content %><br>
 <% end %>
-<%= @user.average_review_rating %>
+<%= @user.average_review_rating %><br>
+
+<h3>Highlighted Reviews</h3>
+<section id="highlighted_best">
+Best:  <%= @user.best_rated_review.title %><br>
+       rating: <%= @user.best_rated_review.rating %><br>
+       <%= @user.best_rated_review.content %><br><br>
+</section>
+
+<section id="highlighted_worst">
+Worst: <%= @user.worst_rated_review.title %><br>
+       rating: <%= @user.worst_rated_review.rating %><br>
+       <%= @user.worst_rated_review.content %><br>
+</section>
+<% end %>
