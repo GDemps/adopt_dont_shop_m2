@@ -5,4 +5,8 @@ class User < ApplicationRecord
                          :city,
                          :state,
                          :zip
+
+  def average_review_rating
+    reviews.average(:rating).to_f.round(1)
+  end
 end
