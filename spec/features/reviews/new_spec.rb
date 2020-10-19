@@ -4,6 +4,7 @@ describe "I am taken to a new review path" do
   before :each do
     @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
     @user_1 = User.create!(name: "Tom", street_address: "123 Tom ave", city: "Tomville", state: "CO", zip: 80011)
+    @user_2 = User.create!(name: "Jim", street_address: "321 Jim St", city: "Jimville", state: "CO", zip: 80012)
   end
 
   it "On this new page, I see a form where I must enter params" do
@@ -22,6 +23,7 @@ describe "I am taken to a new review path" do
     fill_in :name, with: name
 
     click_on 'Create Review'
+
     expect(current_path).to eq("/shelters/#{@shelter1.id}")
     expect(page).to have_content("Awful Place")
     expect(page).to have_content(1)
@@ -51,6 +53,7 @@ describe "I am taken to a new review path" do
 
     expect(page).to have_content("Content can't be blank")
   end
+  
   it "Will not create review without a user" do
     visit "/shelters/#{@shelter1.id}/reviews/new"
 
@@ -67,8 +70,8 @@ describe "I am taken to a new review path" do
     fill_in :name, with: name
 
     click_on 'Create Review'
-    
+
     expect(current_path).to eq("/shelters/#{@shelter1.id}/reviews")
-    expect(page).to have_content("No user with the name #{name}")
+    expect(page).to have_content("No user with the name Kevin")
   end
 end

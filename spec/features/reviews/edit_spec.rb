@@ -4,6 +4,7 @@ describe "Edit" do
   before :each do
     @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
     @user_1 = User.create!(name: "Tom", street_address: "123 Tom ave", city: "Tomville", state: "CO", zip: 80011)
+    @user_2 = User.create!(name: "Jim", street_address: "321 Jim St", city: "Jimville", state: "CO", zip: 80012)
     @review_1 = @user_1.reviews.create!(title: "Great Pets", rating: 4, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter1.id)
   end
   it "can update a review" do
