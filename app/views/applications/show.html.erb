@@ -1,0 +1,11 @@
+<%= @application.applicant %>
+<%= @application.address %>
+<%= @application.description %>
+<% @application.pets.each do |pet| %>
+  <section id='pet-link-<%= pet.id %>'>
+    <li>
+    <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+    </li>
+  </section>
+<% end %>
+<%= @application.application_status %>
