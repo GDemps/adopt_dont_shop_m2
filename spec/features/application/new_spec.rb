@@ -12,9 +12,9 @@ describe "As a visitor" do
     it "creates a new application for a pet" do
       visit '/pets'
 
-    within "#pet-#{@pet1.id}" do
-      click_link "Start an Application"
-    end
+      within "#pet-#{@pet1.id}" do
+        click_link "Start an Application"
+      end
 
       expect(current_path).to eq("/pets/#{@pet1.id}/applications/new")
 
@@ -25,7 +25,25 @@ describe "As a visitor" do
       click_button "Submit"
 
       expect(current_path).to eq("/applications/#{Application.first.id}")
-      save_and_open_page
+    end
+
+    it "If user name doesn't match a valid user, return a flash message and redirect back to new page" do
+      visit '/pets'
+
+      within "#pet-#{@pet1.id}" do
+        click_link "Start an Application"
+      end
+
+      expect(current_path).to eq("/pets/#{@pet1.id}/applications/new")
+
+      fill_in :applicant, with: "Tommy"
+      fill_in :address, with: "123 Tom ave"
+      fill_in :description, with: "We feed the pets"
+
+      click_button "Submit"
+
+      expect(page).to have_content("No user with the name")
+      expect(current_path).to eq("/pets/#{@pet1.id}/applications")
     end
   end
 end
