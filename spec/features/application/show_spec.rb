@@ -16,7 +16,7 @@ describe "As a visitor" do
       ApplicationPet.create(application_id: @application.id, pet_id: @pet3.id)
     end
     it "Has a User's name, address, reason to adopt (description), all pets to adopted and status." do
-      visit "/application/#{@application.id}"
+      visit "/applications/#{@application.id}"
 
       expect(page).to have_content(@application.applicant)
       expect(page).to have_content(@application.address)
@@ -34,6 +34,17 @@ describe "As a visitor" do
       within "#pet-link-#{@pet3.id}" do
         expect(page).to have_link(@pet3.name, :href=>"/pets/#{@pet3.id}")
       end
+    end
+    it "Search for a pet and add it to your application" do
+      visit "/applications/#{@application.id}"
+      @pet4 = @shelter.pets.create!(image:"", name: "Chronos", description: "dog", approximate_age: 10000, sex: "male")
+save_and_open_page
+
+    fill_in :search, with: "Chronos"
+    click_on "Submit"
+    expect(page).to have_content(@pet4.name)
+
+      save_and_open_page
     end
   end
 end
