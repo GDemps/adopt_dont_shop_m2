@@ -1,0 +1,14 @@
+<%= form_tag "/pets/#{@pet.id}/applications", method: :post do %>
+  <h2>Application to Adopt a Pet</h2>
+
+  <%= label_tag "Applicant" %>
+  <%= text_field_tag :applicant %><br>
+
+  <%= label_tag "Address" %>
+  <%= number_field_tag :address %><br>
+
+  <%= label_tag "Description" %>
+  <%= text_field_tag :description %><br>
+
+  <%= submit_tag 'Submit' %>
+<% end %>
