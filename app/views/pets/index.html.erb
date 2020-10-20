@@ -10,6 +10,7 @@
       shelter: <%= link_to "#{pet.shelter.name}", "shelters/#{pet.shelter.id}" %><br>
       <a href="/pets/<%= pet.id %>/edit">Update Pet</a>
       <%= link_to "Delete Pet", "/pets/#{pet.id}", method: :delete %><br>
-    </section>
+      <%= link_to "Start an Application", "/pets/#{pet.id}/applications/new" %>
+  </section>
   <% end %>
 <% end %>
