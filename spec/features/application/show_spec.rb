@@ -38,13 +38,12 @@ describe "As a visitor" do
     it "Search for a pet and add it to your application" do
       visit "/applications/#{@application.id}"
       @pet4 = @shelter.pets.create!(image:"", name: "Chronos", description: "dog", approximate_age: 10000, sex: "male")
-save_and_open_page
 
     fill_in :search, with: "Chronos"
+    save_and_open_page
     click_on "Submit"
-    expect(page).to have_content(@pet4.name)
 
-      save_and_open_page
+    expect(page).to have_content(@pet4.name)
     end
   end
 end

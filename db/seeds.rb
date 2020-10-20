@@ -22,3 +22,9 @@
 @pet2 = @shelter2.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
 
 @pet3 = @shelter1.pets.create!(image:"", name: "Zeus", description: "dog", approximate_age: 4, sex: "male")
+
+@pet4 = @shelter1.pets.create!(image:"", name: "Chronos", description: "dog", approximate_age: 10000, sex: "male")
+
+@application1 = @user_1.applications.create(applicant: @user_1.name, address: @user_1.street_address, description: "We have pet snacks", application_status: "Pending")
+
+ApplicationPet.create(application_id: @application1.id, pet_id: @pet1.id)
