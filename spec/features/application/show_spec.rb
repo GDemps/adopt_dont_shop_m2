@@ -81,11 +81,12 @@ describe "As a visitor" do
         expect(page).to have_button("Submit Application")
         click_button "Submit Application"
       end
-save_and_open_page
-binding.pry
+
+      within '#pet-search' do
+        expect(page).to_not have_button("Search")
+      end
+
       expect(page).to have_content("Pending")
-      binding.pry
-      expect(page).to_not have_selector("#pet-search")
     end
   end
 end
