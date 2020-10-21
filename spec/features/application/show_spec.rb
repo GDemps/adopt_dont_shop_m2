@@ -78,14 +78,14 @@ describe "As a visitor" do
       end
 
       within "#app-submission" do
-        save_and_open_page
         expect(page).to have_button("Submit Application")
-        click_button "Sumbit Application"
+        click_button "Submit Application"
       end
-
-      expect(@application.application_status).to eq("Pending")
-      expect(page).to_not have_css("#pet-search")
+save_and_open_page
+binding.pry
+      expect(page).to have_content("Pending")
+      binding.pry
+      expect(page).to_not have_selector("#pet-search")
     end
-
   end
 end

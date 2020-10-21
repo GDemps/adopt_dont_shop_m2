@@ -13,7 +13,7 @@
 <br>
 
 <section id="app-submission">
-  <%= button_to "Submit Application", "/applications/#{@application.id}", method: :patch, disabled: false %>
+  <%= button_to "Submit Application", "/applications/#{@application.id}", method: :patch %>
 </section>
 
 <br>
@@ -29,6 +29,7 @@
 <% @pet_list.each do |pet| %>
   <%= link_to pet.name, "/pets/#{pet.id}" %>
   <% if @application.application_status == "In Progress" %>
+<<<<<<< Updated upstream
     <h4>Search for A Pet</h4>
     <%= form_tag "/applications/#{@application.id}", method: :get  do %>
       <%= label_tag "Search" %>
@@ -36,13 +37,23 @@
 
       <%= submit_tag "Submit" %>
     <% end %>
+    <% @pet_list.each do |pet| %>
+      <li>
+        <%= link_to pet.name, "/pets/#{pet.id}" %>
+      </li>
+      <% if pet.adoptable %>
+        <%= button_to "Adopt", "/pets/#{pet.id}/applications/#{@application.id}", method: :post %>
+      <% end %>
+=======
   <% end  %>
+<% end %>
   <% @pet_list.each do |pet| %>
     <li>
       <%= link_to pet.name, "/pets/#{pet.id}" %>
     </li>
     <% if pet.adoptable %>
       <%= button_to "Adopt", "/pets/#{pet.id}/applications/#{@application.id}", method: :post %>
+>>>>>>> Stashed changes
     <% end %>
-  <% end %>
+  <% end  %>
 </section>

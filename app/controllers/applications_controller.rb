@@ -29,6 +29,17 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    @application = Application.find(params[:application_id])
+    binding.pry
+    @application.update_attribute(:application_status, "Pending")
+    redirect_to "/applications/#{@application.id}"
+  end
+
   def add_to_application
     @pet = Pet.find(params[:pet_id])
     @application = Application.find(params[:application_id])
@@ -43,6 +54,10 @@ class ApplicationsController < ApplicationController
   private
   def application_params
     params.permit(:applicant, :address, :description)
+  end
+
+  def app_stat
+    params.permit(:application_status)
   end
 
   def pet_params
