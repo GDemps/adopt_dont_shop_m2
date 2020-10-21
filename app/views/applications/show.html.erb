@@ -13,7 +13,7 @@
 <br>
 
 <section id="app-submission">
-  <%= button_to "Submit Application", "/applications/#{@application.id}", method: :patch, disabled: false %>
+  <%= button_to "Submit Application", "/applications/#{@application.id}", method: :patch %>
 </section>
 
 <br>
@@ -27,13 +27,13 @@
 
       <%= submit_tag "Submit" %>
     <% end %>
-  <% end  %>
-  <% @pet_list.each do |pet| %>
-    <li>
-      <%= link_to pet.name, "/pets/#{pet.id}" %>
-    </li>
-    <% if pet.adoptable %>
-      <%= button_to "Adopt", "/pets/#{pet.id}/applications/#{@application.id}", method: :post %>
+    <% @pet_list.each do |pet| %>
+      <li>
+        <%= link_to pet.name, "/pets/#{pet.id}" %>
+      </li>
+      <% if pet.adoptable %>
+        <%= button_to "Adopt", "/pets/#{pet.id}/applications/#{@application.id}", method: :post %>
+      <% end %>
     <% end %>
-  <% end %>
+  <% end  %>
 </section>
