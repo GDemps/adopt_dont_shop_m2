@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
   def show
+    binding.pry
     @application = Application.find(params[:id])
     @pets = Pet.all
     if Pet.exists?(name: params[:search])
@@ -27,6 +28,14 @@ class ApplicationsController < ApplicationController
       @pet = Pet.find(params[:id])
       render :new
     end
+  end
+
+  def add_to_application
+    @pet = Pet.find(params[:pet_id])
+    @application = Application.find(params[:application_id])
+    ApplicationPet.create(application_id: params[:application_id], pet_id: params[:pet_id])
+    redirect_to "/applications/#{@application.id}"
+    flash[:notice] = "#{@pet.name} Has Been Added"
   end
 
   private
