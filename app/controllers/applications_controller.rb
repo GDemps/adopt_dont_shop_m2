@@ -18,7 +18,6 @@ class ApplicationsController < ApplicationController
   def create
     if @user = User.find_by(name: params[:applicant])
       @application = @user.applications.new(application_params)
-      @application.application_status = "In Progress"
       @application.save
       ApplicationPet.create(application_id: @application.id, pet_id: params[:id])
       redirect_to "/applications/#{@application.id}"
@@ -27,6 +26,15 @@ class ApplicationsController < ApplicationController
       @pet = Pet.find(params[:id])
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @application = Application.find(params[:application_id])
+    @application.update_attribute(:application_status, "Pending")
+    render :show
   end
 
   def add_to_application
@@ -43,6 +51,10 @@ class ApplicationsController < ApplicationController
   private
   def application_params
     params.permit(:applicant, :address, :description)
+  end
+
+  def app_stat
+    params.permit(:application_status)
   end
 
   def pet_params

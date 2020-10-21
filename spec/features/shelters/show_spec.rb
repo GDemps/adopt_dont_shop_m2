@@ -4,8 +4,20 @@ RSpec.describe 'Shelter show page' do
   before :each do
     @shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
     @shelter2 = Shelter.create!(name: "Silly Shelter", address: "123 Silly Ave", city: "Denver", state: "CO", zip: 80012)
+    @shelter3 = Shelter.create!(name: "Awful Place", address: "123 Bad", city: "Tuscon", state: "AZ", zip: 12345)
     @user_1 = User.create!(name: "Tom", street_address: "123 Tom ave", city: "Tomville", state: "CO", zip: 80011)
+    @user_2 = User.create!(name: "Tammy", street_address: "123 Tammy ave", city: "Tammyville", state: "CO", zip: 80044)
     @review_1 = @user_1.reviews.create!(title: "Great Pets", rating: 4, content: "We got a dog", image:"", name: @user_1.name, shelter_id: @shelter1.id)
+    @review_2 = @user_2.reviews.create!(title: "Awful", rating: 1, content: "Ugly Pets", image:"", name: @user_2.name, shelter_id: @shelter1.id)
+    @review_3 = @user_2.reviews.create!(title: "Awful", rating: 1, content: "Ugly Pets", image:"", name: @user_2.name, shelter_id: @shelter2.id)
+    @pet1 = @shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 2, sex: "male")
+    @pet2 = @shelter2.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
+    @pet3 = @shelter1.pets.create!(image:"", name: "Zeus", description: "dog", approximate_age: 4, sex: "male")
+    @application1 = @user_1.applications.create!(applicant: @user_1.name, address: @user_1.street_address, description: "We have pet snacks", application_status: "Pending")
+    @application2 = @user_2.applications.create!(applicant: @user_2.name, address: @user_2.street_address, description: "We love pets", application_status: "Pending")
+    ApplicationPet.create!(application_id: @application1.id, pet_id: @pet1.id)
+    ApplicationPet.create!(application_id: @application2.id, pet_id: @pet2.id)
+    ApplicationPet.create!(application_id: @application1.id, pet_id: @pet3.id)
   end
 
   it "displays shelter with that id and all its attributes" do
@@ -63,6 +75,16 @@ RSpec.describe 'Shelter show page' do
 
     within "#review-#{@review_1.id}" do
       expect(page).to have_link("Delete Review")
+    end
+  end
+
+  it "I see statistics for that shelter: count of pets at that shelter, avg shelter review rating, number of applications on file" do
+    visit "/shelters/#{@shelter1.id}"
+
+    within "#statistics" do
+      expect(page).to have_content("Number of Pets: 2")
+      expect(page).to have_content("Average Review Rating: 2.5")
+      expect(page).to have_content("Number of Applications: 2")
     end
   end
 end

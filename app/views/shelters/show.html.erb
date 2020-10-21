@@ -7,6 +7,12 @@
 <a href="/shelters/<%= @shelter.id %>/edit">Edit Shelter</a>
 <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
 
+<section id="statistics">
+  Number of Pets: <%= @shelter.num_of_pets %>
+  Average Review Rating: <%= @shelter.avg_rating %>
+  Number of Applications: <%= @shelter.total_apps %>
+</section>
+
 <h2>REVIEWS</h2>
 <% @shelter.reviews.each do |review| %>
 <section id="review-<%=review.id%>">

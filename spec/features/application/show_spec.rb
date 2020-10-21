@@ -9,7 +9,7 @@ describe "As a visitor" do
       @pet2 = @shelter.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
       @pet3 = @shelter.pets.create!(image:"", name: "Zeus", description: "dog", approximate_age: 4, sex: "male")
 
-      @application = @user.applications.create(applicant: @user.name, address: @user.street_address, description: "We have pet snacks", application_status: "Pending")
+      @application = @user.applications.create(applicant: @user.name, address: @user.street_address, description: "We have pet snacks", application_status: "In Progress")
 
       ApplicationPet.create(application_id: @application.id, pet_id: @pet1.id)
       ApplicationPet.create(application_id: @application.id, pet_id: @pet2.id)
@@ -65,7 +65,28 @@ describe "As a visitor" do
 
       within "#pet-link-#{@pet4.id}" do
         expect(page).to have_content(@pet4.name)
-      end 
+      end
+    end
+    it "Has a section to submit Application" do
+      visit "/applications/#{@application.id}"
+
+      @pet4 = @shelter.pets.create!(image:"", name: "Chronos", description: "dog", approximate_age: 10000, sex: "male")
+
+      within "#pet-search" do
+        fill_in :search, with: "Chronos"
+        click_on "Submit"
+      end
+
+      within "#app-submission" do
+        expect(page).to have_button("Submit Application")
+        click_button "Submit Application"
+      end
+
+      within '#pet-search' do
+        expect(page).to_not have_button("Search")
+      end
+
+      expect(page).to have_content("Pending")
     end
   end
 end
