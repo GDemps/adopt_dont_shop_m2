@@ -29,6 +29,17 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def add_to_application
+    @pet = Pet.find(params[:pet_id])
+    @application = Application.find(params[:application_id])
+    if ApplicationPet.find_by(pet_id: params[:pet_id]) == nil
+      ApplicationPet.create(application_id: params[:application_id], pet_id: params[:pet_id])
+      redirect_to "/applications/#{@application.id}"
+    else
+      redirect_to "/applications/#{@application.id}"
+    end
+  end
+
   private
   def application_params
     params.permit(:applicant, :address, :description)

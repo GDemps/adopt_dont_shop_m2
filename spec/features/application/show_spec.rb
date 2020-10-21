@@ -48,5 +48,24 @@ describe "As a visitor" do
         expect(page).to have_link(@pet4.name)
       end
     end
+    it "Adopt a pet from the search results" do
+      visit "/applications/#{@application.id}"
+
+      @pet4 = @shelter.pets.create!(image:"", name: "Chronos", description: "dog", approximate_age: 10000, sex: "male")
+
+      fill_in :search, with: "Chronos"
+      click_on "Submit"
+
+      within "#pet-search" do
+        expect(page).to have_content(@pet4.name)
+        expect(page).to have_link(@pet4.name)
+        expect(page).to have_button("Adopt")
+        click_button "Adopt"
+      end
+
+      within "#pet-link-#{@pet4.id}" do
+        expect(page).to have_content(@pet4.name)
+      end 
+    end
   end
 end

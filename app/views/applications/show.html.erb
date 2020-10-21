@@ -19,6 +19,11 @@
   <%= submit_tag "Submit" %>
 <% end %>
 <% @pet_list.each do |pet| %>
-  <%= link_to pet.name, "/pets/#{pet.id}" %>
+  <li>
+    <%= link_to pet.name, "/pets/#{pet.id}" %>
+  </li>
+    <% if pet.adoptable %>
+      <%= button_to "Adopt", "/pets/#{pet.id}/applications/#{@application.id}", method: :post %>
   <% end %>
+<% end %>
 </section>
