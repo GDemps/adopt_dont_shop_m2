@@ -1,6 +1,5 @@
 class ApplicationsController < ApplicationController
   def show
-    binding.pry
     @application = Application.find(params[:id])
     @pets = Pet.all
     if Pet.exists?(name: params[:search])
@@ -37,7 +36,6 @@ class ApplicationsController < ApplicationController
       ApplicationPet.create(application_id: params[:application_id], pet_id: params[:pet_id])
       redirect_to "/applications/#{@application.id}"
     else
-      flash.now[:notice] = "Please Select an Available Pet"
       redirect_to "/applications/#{@application.id}"
     end
   end
