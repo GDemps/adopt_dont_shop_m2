@@ -62,6 +62,10 @@ describe "As a visitor" do
         expect(page).to have_button("Adopt")
         click_button "Adopt"
       end
+
+      within "#pet-link-#{@pet4.id}" do
+        expect(page).to have_content(@pet4.name)
+      end 
     end
   end
 end
